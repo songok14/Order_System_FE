@@ -2,17 +2,22 @@
 <template>
   <!-- <HelloWorld></HelloWorld> -->
   <!-- <HelloWorld/> -->
-   <!-- vue(vuetify)에서는 모든 태긔의 최상단에 v-app으로 감싸져 있어야 정상적으로 동작 -->
-   <!-- <v-app> -->
+  <!-- vue(vuetify)에서는 모든 태긔의 최상단에 v-app으로 감싸져 있어야 정상적으로 동작 -->
+  <v-app>
+    <HeaderComponent/>
     <!-- header, footer를 제외한 실질적인 화면의 내용 v-main안에 들어감 -->
-    <!-- <v-main> -->
-      <router-view/>
-    <!-- </v-main>
-   </v-app> -->
+    <v-main>
+      <router-view />
+    </v-main>
+    <FooterComponent/>
+  </v-app>
 </template>
 
 <!-- script에는 js를 코딩 -->
 <script>
+import FooterComponent from './components/FooterComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
+
 // import HelloWorld from './components/HelloWorld.vue'
 
 
@@ -22,7 +27,7 @@ export default {
   name: 'App',
   // 다른 화면을 import한 이후에 template에서 사용하려 할 때는 components라는 별수에 나열
   components: {
-
+    HeaderComponent, FooterComponent
   }
 }
 </script>
