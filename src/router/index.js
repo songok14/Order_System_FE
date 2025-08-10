@@ -1,9 +1,11 @@
 
 import { createRouter, createWebHistory } from "vue-router";
 import { practiceRouter } from "./practiceRouter";
+import { memberRouter } from "./memberRouter";
 
 const routes = [
-    ...practiceRouter
+    ...practiceRouter,
+    ...memberRouter,
 ];
 const router = createRouter(
     {

@@ -1,14 +1,14 @@
-import MemberCreate from "@/components/Oauth/MemberCreate.vue";
-import MemberLogin from "@/components/Oauth/MemberLogin.vue";
+import MemberCreate from "@/views/MemberCreate.vue";
+import MemberLogin from "@/views/MemberLogin.vue";
 
-export const practiceRouter = [
+export const memberRouter = [
     {
         path: "/member/create",
         name: "MemberCreate",
         component: MemberCreate
     },
     {
-        path: "/member/login",
+        path: "/member/dologin",
         name: "MemberLogin",
         component: MemberLogin
     }

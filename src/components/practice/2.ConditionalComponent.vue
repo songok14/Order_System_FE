@@ -16,9 +16,9 @@
         </thead>
         <tbody>
             <tr v-for="product in productList" :key="product.id">
-                <td>{{product.id}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.price}}</td>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
 
             </tr>
         </tbody>
@@ -28,27 +28,27 @@
 <script>
 import axios from 'axios';
 
-    export default{
-        data(){
-            return{
-                isLogined: false,
-                // productList: [{id:1, name:"사과", price:"3000"}, {id:2, name:"복숭아", price:"16000"}, {id:3, name:"수박", price:"30000"}]
-                productList: []
-            }
+export default {
+    data() {
+        return {
+            isLogined: false,
+            // productList: [{id:1, name:"사과", price:"3000"}, {id:2, name:"복숭아", price:"16000"}, {id:3, name:"수박", price:"30000"}]
+            productList: []
+        }
+    },
+    // 화면이 열림과 동시에 실행되는 hook 함수: created
+    async created() {
+        const response = await axios.get("http://localhost:8080/product/list");
+        console.log(response);
+        this.productList = response.data.result.content;
+    },
+    methods: {
+        doLogin() {
+            this.isLogined = true;
         },
-        // 화면이 열림과 동시에 실행되는 hook 함수: created
-        async created(){
-            const response = await axios.get("http://localhost:8080/product/list");
-            console.log(response);
-            this.productList = response.data.result.content;
-        },
-        methods: {
-            doLogin(){
-                this.isLogined= true;
-            },
-            doLogout(){
-                this.isLogined=false;
-            }
+        doLogout() {
+            this.isLogined = false;
         }
     }
+}
 </script>
