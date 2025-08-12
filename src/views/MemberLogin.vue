@@ -12,7 +12,7 @@
                             <v-text-field label="비밀번호" type="password" v-model="password" prepend-icon="mdi-lock" />
                             <v-row>
                                 <v-col>
-                                    <v-btn color="primary" block @click="memberCreate()">
+                                    <v-btn color="primary" block @click="memberLogin()">
                                         로그인
                                     </v-btn>
                                 </v-col>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { getErrorMessage, getResultData } from '@/utils/commonDataHandler';
 import axios from 'axios';
 
 export default {
@@ -36,20 +37,21 @@ export default {
         }
     },
     methods: {
-        async memberCreate() {
+        async memberLogin() {
             try {
                 const data = {
                     email: this.email,
                     password: this.password
                 };
-                const response = await axios.post("http://localhost:8080/member/dologin", data);
-                const accessToken = response.data.result.accessToken;
-                const refreshToken = response.data.result.refreshToren;
+                const response = await axios.post(`${process.env.VUE_APP_API_BASE_URL}/member/dologin`, data);
+                const result = getResultData(response);
+                const accessToken = result.accessToken;
+                const refreshToken = result.refreshToken;
                 localStorage.setItem("accessToken", accessToken);
                 localStorage.setItem("refreshToken", refreshToken);
                 window.location.href = "/";
             } catch (e) {
-                alert(e.response.data.statusMessage);
+                alert(getErrorMessage(e));
                 console.log(e);
             }
         }

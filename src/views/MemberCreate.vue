@@ -46,7 +46,7 @@ export default {
                     email: this.email,
                     password: this.password
                 };
-                await axios.post("http://localhost:8080/member/create", data);
+                await axios.post(`${process.env.VUE_APP_API_BASE_URL}/member/create`, data);
                 this.$router.push("/");
             } catch (e) {
                 // 에러가 터지는 경우 e변수 안에 서버에서 주는 error 메시지가 담김
