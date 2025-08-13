@@ -7,6 +7,7 @@ import vuetify from './plugins/vuetify';
 import '@mdi/font/css/materialdesignicons.css'; // mdi 아이콘을 사용하기 위한 CSS 파일
 import axios from 'axios';
 import { getResultData } from './utils/commonDataHandler';
+import store from './store';
 
 axios.interceptors.request.use(
     config => {
@@ -46,4 +47,5 @@ const app = createApp(App);
 
 app.use(vuetify)
 app.use(router)
+app.use(store)
 app.mount('#app')

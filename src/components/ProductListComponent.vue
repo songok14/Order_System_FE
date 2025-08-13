@@ -87,6 +87,15 @@ export default {
         window.addEventListener('scroll', this.scrollPaging)
     },
     methods: {
+        addCart() {
+            // let totalQuantity = 0;
+            const orderProductList = this.productList.filter(p => p.selected && p.productCount > 0)
+                .map(p => ({ productId: p.id, productName: p.name, productCount: p.productCount }));
+            // for (let i = 0; i < orderProductList.length; i++) {
+            //     totalQuantity += orderProductList[i].productCount;
+            // }
+            orderProductList.forEach(p => this.$store.dispatch("addCart", p))
+        },
         searchProduct() {
             this.productList = [];
             this.currentPage = 0;
